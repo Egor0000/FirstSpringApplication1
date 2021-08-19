@@ -1,4 +1,4 @@
-package com.example.FirstSpringApplication.entities;
+package com.example.educational.entities;
 
 import lombok.Data;
 
@@ -21,7 +21,7 @@ public class Faculty {
     @Column(name = "address")
     private String address;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="university_id", referencedColumnName = "id")
     private University university;
 }

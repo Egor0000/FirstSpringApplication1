@@ -1,9 +1,9 @@
-package com.example.FirstSpringApplication.services.impl.impl;
+package com.example.educational.services.impl.impl;
 
-import com.example.FirstSpringApplication.dto.UniversityDTO;
-import com.example.FirstSpringApplication.entities.University;
-import com.example.FirstSpringApplication.repositories.UniversityRepository;
-import com.example.FirstSpringApplication.services.impl.UniversityService;
+import com.example.educational.dto.UniversityDTO;
+import com.example.educational.entities.University;
+import com.example.educational.repositories.UniversityRepository;
+import com.example.educational.services.impl.UniversityService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,6 @@ public class UniversityServiceImpl implements UniversityService {
         university.setRegistrationNumber("###");
         University savedUniversity = universityRepository.save(university);
         return savedUniversity != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-        //return HttpStatus.OK;
     }
 
     @Override
@@ -46,17 +45,17 @@ public class UniversityServiceImpl implements UniversityService {
     public UniversityDTO update(UniversityDTO universityDTO){
         University newUniversity = modelMapper.map(universityDTO, University.class);
         Optional<University> optionalUniversity = universityRepository.findById(newUniversity.getId());
-        UniversityDTO finalUniversityDTO = null;
         if(optionalUniversity.isPresent()){
             University oldUniversity = optionalUniversity.get();
-            oldUniversity.setName(newUniversity.getName());
-            oldUniversity.setShortName(newUniversity.getShortName());
-            universityRepository.save(oldUniversity);
 
-            finalUniversityDTO = modelMapper.map(oldUniversity, UniversityDTO.class);
-            return finalUniversityDTO;
+            newUniversity.setId(oldUniversity.getId());
+            newUniversity.setRegistrationNumber(oldUniversity.getRegistrationNumber());
+
+            universityRepository.save(newUniversity);
+
+            return modelMapper.map(newUniversity, UniversityDTO.class);
         }
-        return finalUniversityDTO;
+        return null;
     }
 
     @Override

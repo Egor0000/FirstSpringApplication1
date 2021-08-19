@@ -1,10 +1,10 @@
-package com.example.FirstSpringApplication.services.impl.impl;
+package com.example.educational.services.impl.impl;
 
-import com.example.FirstSpringApplication.dto.FacultyDTO;
-import com.example.FirstSpringApplication.entities.Faculty;
-import com.example.FirstSpringApplication.repositories.FacultyRepository;
-import com.example.FirstSpringApplication.repositories.UniversityRepository;
-import com.example.FirstSpringApplication.services.impl.FacultyService;
+import com.example.educational.dto.FacultyDTO;
+import com.example.educational.entities.Faculty;
+import com.example.educational.entities.University;
+import com.example.educational.repositories.FacultyRepository;
+import com.example.educational.services.impl.FacultyService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -18,13 +18,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class FacultyServiceImpl implements FacultyService {
     private final ModelMapper modelMapper;
+    private final UniversityServiceImpl universityService;
     private final FacultyRepository facultyRepository;
-    private final UniversityRepository universityRepository;
 
     @Override
     public HttpStatus save(FacultyDTO facultyDTO) {
         Faculty faculty = modelMapper.map(facultyDTO, Faculty.class);
-        faculty.setUniversity(universityRepository.getById(facultyDTO.getUniversityId()));
+        faculty.setUniversity(modelMapper.map(universityService.getById(facultyDTO.getUniversityId()), University.class));
         Faculty savedFaculty = facultyRepository.save(faculty);
         return savedFaculty==null?HttpStatus.BAD_REQUEST:HttpStatus.OK;
     }
@@ -47,19 +47,17 @@ public class FacultyServiceImpl implements FacultyService {
     public FacultyDTO update(FacultyDTO facultyDTO) {
         Faculty newFaculty = modelMapper.map(facultyDTO, Faculty.class);
         Optional<Faculty> optionalFaculty = facultyRepository.findById(newFaculty.getId());
-        FacultyDTO  oldFacultyDto = null;
         if(optionalFaculty.isPresent()){
             Faculty oldFaculty = optionalFaculty.get();
 
-            oldFaculty.setName(newFaculty.getName());
-            oldFaculty.setShortName(newFaculty.getShortName());
-            oldFaculty.setAddress(newFaculty.getAddress());
+            newFaculty.setId(oldFaculty.getId());
+            newFaculty.setUniversity(oldFaculty.getUniversity());
 
-            facultyRepository.save(oldFaculty);
-            oldFacultyDto = modelMapper.map(oldFaculty, FacultyDTO.class);
-            return oldFacultyDto;
+            facultyRepository.save(newFaculty);
+
+            return modelMapper.map(newFaculty, FacultyDTO.class);
         }
-        return oldFacultyDto;
+        return null;
     }
 
     @Override

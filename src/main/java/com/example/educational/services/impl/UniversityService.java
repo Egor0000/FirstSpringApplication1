@@ -1,7 +1,6 @@
-package com.example.FirstSpringApplication.services.impl;
+package com.example.educational.services.impl;
 
-import com.example.FirstSpringApplication.dto.UniversityDTO;
-import com.example.FirstSpringApplication.entities.University;
+import com.example.educational.dto.UniversityDTO;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;

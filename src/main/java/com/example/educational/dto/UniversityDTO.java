@@ -1,4 +1,4 @@
-package com.example.FirstSpringApplication.dto;
+package com.example.educational.dto;
 
 import lombok.Data;
 

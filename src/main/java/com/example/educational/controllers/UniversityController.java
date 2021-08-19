@@ -1,11 +1,9 @@
-package com.example.FirstSpringApplication.controllers;
+package com.example.educational.controllers;
 
-import com.example.FirstSpringApplication.dto.UniversityDTO;
-import com.example.FirstSpringApplication.entities.University;
-import com.example.FirstSpringApplication.services.impl.UniversityService;
+import com.example.educational.dto.UniversityDTO;
+import com.example.educational.services.impl.UniversityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

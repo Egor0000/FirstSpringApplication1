@@ -9,6 +9,6 @@ spring:
       ddl-auto: update
   activemq:
     pool:
-      max-coonections: 100;
+      max-connections: 10
 server:
   port: 8443

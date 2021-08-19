@@ -1,7 +1,7 @@
-package com.example.FirstSpringApplication.controllers;
+package com.example.educational.controllers;
 
-import com.example.FirstSpringApplication.dto.FacultyDTO;
-import com.example.FirstSpringApplication.services.impl.FacultyService;
+import com.example.educational.dto.FacultyDTO;
+import com.example.educational.services.impl.FacultyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +29,7 @@ public class FacultyController {
         return facultyService.getById(id);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public FacultyDTO update(@RequestBody FacultyDTO facultyDTO){
         return facultyService.update(facultyDTO);
     }

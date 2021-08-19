@@ -1,6 +1,6 @@
-package com.example.FirstSpringApplication.repositories;
+package com.example.educational.repositories;
 
-import com.example.FirstSpringApplication.entities.Faculty;
+import com.example.educational.entities.Faculty;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

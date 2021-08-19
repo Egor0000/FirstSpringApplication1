@@ -1,4 +1,4 @@
-package com.example.FirstSpringApplication.entities;
+package com.example.educational.entities;
 
 import lombok.Data;
 
@@ -22,6 +22,6 @@ public class University{
     @Column(name = "registration_number")
     private String registrationNumber;
 
-    @OneToMany(mappedBy = "university")
+    @OneToMany(mappedBy = "university", cascade = CascadeType.ALL)
     private List<Faculty> faculties;
 }

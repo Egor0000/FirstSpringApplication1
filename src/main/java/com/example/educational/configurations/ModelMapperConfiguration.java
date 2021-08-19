@@ -1,6 +1,5 @@
-package com.example.FirstSpringApplication.configurations;
+package com.example.educational.configurations;
 
-import org.dom4j.rule.Mode;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
