@@ -20,11 +20,11 @@ public class UniversityServiceImpl implements UniversityService {
     private final ModelMapper modelMapper;
 
     @Override
-    public HttpStatus saveUniversity(UniversityDTO universityDTO) {
+    public UniversityDTO saveUniversity(UniversityDTO universityDTO) {
         University university = modelMapper.map(universityDTO, University.class);
         university.setRegistrationNumber("###");
         University savedUniversity = universityRepository.save(university);
-        return savedUniversity != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return modelMapper.map(savedUniversity, UniversityDTO.class);
     }
 
     @Override

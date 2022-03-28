@@ -15,7 +15,7 @@ public class UniversityController {
     private final UniversityService universityService;
 
     @PostMapping("/save")
-    public HttpStatus saveUniversity(@RequestBody UniversityDTO universityDTO){
+    public UniversityDTO saveUniversity(@RequestBody UniversityDTO universityDTO){
         return universityService.saveUniversity(universityDTO);
     }
 

@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import java.util.List;
 
 public interface UniversityService {
-    HttpStatus saveUniversity(UniversityDTO universityDTO);
+    UniversityDTO saveUniversity(UniversityDTO universityDTO);
 
     List<UniversityDTO> getAll();
 
